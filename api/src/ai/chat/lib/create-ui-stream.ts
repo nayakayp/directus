@@ -1,6 +1,7 @@
 import { type AnthropicProvider, createAnthropic } from '@ai-sdk/anthropic';
 import { createOpenAI, type OpenAIProvider } from '@ai-sdk/openai';
 import { ServiceUnavailableError } from '@directus/errors';
+import { useEnv } from '@directus/env';
 import {
 	convertToModelMessages,
 	type LanguageModelUsage,
@@ -32,12 +33,24 @@ export const createUiStream = (
 		throw new ServiceUnavailableError({ service: provider, reason: 'No API key configured for LLM provider' });
 	}
 
+	const env = useEnv();
+
 	let modelProvider: OpenAIProvider | AnthropicProvider;
 
 	if (provider === 'openai') {
-		modelProvider = createOpenAI({ apiKey: apiKeys.openai! });
+		const openaiBaseURL = env['AI_OPENAI_BASE_URL'] as string | undefined;
+
+		modelProvider = createOpenAI({
+			apiKey: apiKeys.openai!,
+			...(openaiBaseURL && { baseURL: openaiBaseURL }),
+		});
 	} else if (provider === 'anthropic') {
-		modelProvider = createAnthropic({ apiKey: apiKeys.anthropic! });
+		const anthropicBaseURL = env['AI_ANTHROPIC_BASE_URL'] as string | undefined;
+
+		modelProvider = createAnthropic({
+			apiKey: apiKeys.anthropic!,
+			...(anthropicBaseURL && { baseURL: anthropicBaseURL }),
+		});
 	} else {
 		throw new Error(`Unexpected provider given: "${provider}"`);
 	}

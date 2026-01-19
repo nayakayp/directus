@@ -195,4 +195,6 @@ export const DEFAULTS = {
 	MCP_ENABLED: true,
 
 	AI_ENABLED: true,
+	AI_OPENAI_BASE_URL: undefined,
+	AI_ANTHROPIC_BASE_URL: undefined,
 } as const;

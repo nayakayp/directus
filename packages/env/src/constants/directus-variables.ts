@@ -264,6 +264,8 @@ export const DIRECTUS_VARIABLES = [
 
 	// ai
 	'AI_ENABLED',
+	'AI_OPENAI_BASE_URL',
+	'AI_ANTHROPIC_BASE_URL',
 ] as const;
 
 /**
