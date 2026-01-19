@@ -92,4 +92,60 @@ export const AI_MODELS: ModelDefinition[] = [
 			output: 15.0,
 		},
 	},
+	{
+		provider: 'openai',
+		model: 'claude-sonnet-4-5',
+		name: 'OpenAI GPT OSS',
+		icon: LogoOpenAI,
+		limit: {
+			context: 65_000,
+			output: 32_000,
+		},
+		cost: {
+			input: 0.35,
+			output: 0.75,
+		},
+	},
+	{
+		provider: 'openai',
+		model: 'llama3.1-8b',
+		name: 'Llama 3.1 8B',
+		icon: LogoOpenAI,
+		limit: {
+			context: 8_000,
+			output: 8_000,
+		},
+		cost: {
+			input: 0.1,
+			output: 0.1,
+		},
+	},
+	{
+		provider: 'openai',
+		model: 'llama-3.3-70b',
+		name: 'Llama 3.3 70B',
+		icon: LogoOpenAI,
+		limit: {
+			context: 65_000,
+			output: 8_000,
+		},
+		cost: {
+			input: 0.85,
+			output: 1.2,
+		},
+	},
+	{
+		provider: 'openai',
+		model: 'qwen-3-32b',
+		name: 'Qwen 3 32B',
+		icon: LogoOpenAI,
+		limit: {
+			context: 65_000,
+			output: 8_000,
+		},
+		cost: {
+			input: 0.4,
+			output: 0.8,
+		},
+	},
 ] as const;
